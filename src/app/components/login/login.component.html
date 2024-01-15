@@ -1,16 +1,7 @@
-<title>Windo Hub - Login</title>
+<app-navbar></app-navbar>
 <div class="mainBody">
-  <div>
-    <img
-      src="assets/images/windo.png"
-      width="56px"
-      id="windoLogo"
-      alt="Windo Hub Logo"
-      [routerLink]="['/']"
-    />
-  </div>
   <h2>Windo Hub Login</h2>
-  <form class="example-form">
+  <form class="example-form" (ngSubmit)="onSubmit()">
     <mat-form-field class="example-full-width">
       <mat-label>Username</mat-label>
       <input
@@ -42,9 +33,6 @@
       <mat-error>Password is <strong>required</strong></mat-error>
       }
     </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Login</button>
   </form>
-
-  <div>
-    <button mat-raised-button color="primary">Login</button>
-  </div>
 </div>
