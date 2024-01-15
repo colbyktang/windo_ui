@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../services/auth.service';
 import { StorageService } from '../../services/storage.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -73,7 +74,8 @@ export class LoginComponent implements OnInit {
     const username = this.userFormControl.value!;
     const password = this.passFormControl.value!;
     this.authService
-      .login(username, password).subscribe({
+      .login(username, password).
+      subscribe({
         next: (data) => {
           this.storageService.saveUser(data);
 
@@ -82,7 +84,7 @@ export class LoginComponent implements OnInit {
           this.roles = this.storageService.getUser().roles;
           this.router.navigate(['/dashboard']);
         },
-        error: (err) => {
+        error: (err : HttpErrorResponse) => {
           this.errorMessage = err.error.message;
           this.isLoginFailed = true;
         },

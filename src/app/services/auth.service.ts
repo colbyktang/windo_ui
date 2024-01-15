@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import User from '../models/User';
@@ -21,7 +21,7 @@ export class AuthService {
     const payload = { username: username, password: password };
     return this.http.post(`${this.authUrl}/login`, payload, httpOptions).pipe(
       catchError((err) => {
-        return throwError(() => new Error(err));
+        return throwError(() => new HttpErrorResponse(err.error));
       })
     );
   }
