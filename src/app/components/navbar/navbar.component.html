@@ -9,5 +9,12 @@
     <span class="spacer"></span>
     <span>Windo Hub</span>
     <span class="spacer"></span>
-    <button mat-raised-button color="accent" [routerLink]="['/login']">Login</button>
+    <ng-template [ngIf]="!isLoggedIn">
+        <button mat-raised-button color="primary" [routerLink]="['/login']">Login</button>
+    </ng-template>
+    <ng-template [ngIf]="isLoggedIn">
+        <p>{{user.username}}</p>
+        <button mat-raised-button color="primary" [routerLink]="['/dashboard']">Dashboard</button>
+        <button mat-raised-button color="primary" [routerLink]="['/']" (click)="logout()">Log Out</button>
+    </ng-template>
 </mat-toolbar>
