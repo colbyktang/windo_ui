@@ -7,6 +7,6 @@ export const environment = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin':
       '',
-    Auth: '',
+    Authorization: '',
   },
 };
