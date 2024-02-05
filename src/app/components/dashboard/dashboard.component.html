@@ -2,4 +2,24 @@
 <div class="mainBody">
     <h1>Dashboard</h1>
     <h3>Welcome, {{currentUser.username}}!</h3>
+    <ul>
+        <li><a [routerLink]="['/profile']">View Profile</a></li>
+        <li><a [routerLink]="['/changeProfile']">Change Profile Settings</a></li>
+        <li><a [routerLink]="['/gallery']">View Gallery</a></li>
+    </ul>
+    <div class="instanceContainer">
+        <strong><h3>Instances: {{instancesList.length}}</h3></strong>
+        <button mat-raised-button (click)="getInstances()">Refresh All</button>
+        <div class="instance" *ngFor="let instance of instancesList; index as i">
+            <h3><u>{{instance.instanceKeyName}} [{{instance.instanceId}}]</u>: 
+                <span [ngStyle]="{'color': instance.instanceStatus == 'running' ? 'rgb(60, 179, 113)' : (instance.instanceStatus == 'stopped' ? 'red' : null)}">{{instance.instanceStatus}}</span>
+            </h3>
+            <p>{{instance.instanceName}}</p>
+            <p>{{instance.availabilityZone}}: {{instance.publicIp}}</p>
+            <p>Reason for {{instance.instanceStatus}} status: {{instance.stateReason}}</p>
+            <button mat-raised-button style="margin-right: 1em" color="primary" *ngIf='instance.instanceStatus === "stopped"' (click)="toggleInstance(instance)">Start Instance</button>
+            <button mat-raised-button style="margin-right: 1em" color="primary" *ngIf='instance.instanceStatus === "running"' (click)="toggleInstance(instance)">Stop Instance</button>
+            <button mat-raised-button color="secondary" (click)="getInstance(i)">Refresh Instance</button>
+        </div>
+    </div>
 </div>
