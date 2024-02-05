@@ -14,7 +14,7 @@ export class UserService {
   }
 
   getUserBoard(): Observable<any> {
-    return this.http.get(environment.API_URL + 'user', { responseType: 'text' });
+    return this.http.get(environment.API_URL + 'dashboard', { responseType: 'text' });
   }
   
   getModeratorBoard(): Observable<any> {
@@ -22,6 +22,6 @@ export class UserService {
   }
 
   getAdminBoard(): Observable<any> {
-    return this.http.get(environment.API_URL + 'admin', { responseType: 'text' });
+    return this.http.get(environment.API_URL + 'dashboard', { responseType: 'text' });
   }
 }
