@@ -13,7 +13,7 @@
         <button mat-raised-button color="primary" [routerLink]="['/login']">Login</button>
     </ng-template>
     <ng-template [ngIf]="isLoggedIn">
-        <p>{{user.username}}</p>
+        <p id="username">{{user.username}}</p>
         <button mat-raised-button color="primary" [routerLink]="['/dashboard']">Dashboard</button>
         <button mat-raised-button color="primary" [routerLink]="['/']" (click)="logout()">Log Out</button>
     </ng-template>
